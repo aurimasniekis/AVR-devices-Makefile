@@ -134,13 +134,13 @@ endif
 
 $(OUTPUT_NAME).hex: $(OUTPUT_NAME).elf
 	$(OBJCOPY) -j .text -j .data -O ihex $(BUILD_DIR)/$(OUTPUT_NAME).elf $(BUILD_DIR)/$(OUTPUT_NAME).hex
-	$(SIZE) $(SIZE_FLAGS) $(BUILD_DIR)/$(OUTPUT_NAME).hex
+	$(SIZE) $(SIZE_FLAGS) $(BUILD_DIR)/$(OUTPUT_NAME).elf
 
 $(OUTPUT_NAME).elf: $(OBJECTS)
 	$(LD) $(LD_FLAGS) $(LD_OBJECTS) $(OBJECTS) -o $(BUILD_DIR)/$(OUTPUT_NAME).elf
 
 stats: $(OUTPUT_NAME).hex
-	$(SIZE) $(SIZE_FLAGS) $(BUILD_DIR)/$(OUTPUT_NAME).hex
+	$(SIZE) $(SIZE_FLAGS) $(BUILD_DIR)/$(OUTPUT_NAME).elf
 
 clean:
 	$(REMOVE) $(OBJECTS)
