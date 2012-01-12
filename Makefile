@@ -112,6 +112,8 @@ LD_FLAGS += -lm
 # Floating point printf version (require math library above)
 #LD_FLAGS += -Wl,-u,vfprintf -lprintf_flt
 
+SIZE_FLAGS = -C --mcu=$(TARGET)
+
 ##########################################################
 # Programmer FLAGS
 ##########################################################
@@ -132,13 +134,13 @@ endif
 
 $(OUTPUT_NAME).hex: $(OUTPUT_NAME).elf
 	$(OBJCOPY) -j .text -j .data -O ihex $(BUILD_DIR)/$(OUTPUT_NAME).elf $(BUILD_DIR)/$(OUTPUT_NAME).hex
-	$(SIZE) $(BUILD_DIR)/$(OUTPUT_NAME).hex
+	$(SIZE) $(SIZE_FLAGS) $(BUILD_DIR)/$(OUTPUT_NAME).hex
 
 $(OUTPUT_NAME).elf: $(OBJECTS)
 	$(LD) $(LD_FLAGS) $(LD_OBJECTS) $(OBJECTS) -o $(BUILD_DIR)/$(OUTPUT_NAME).elf
 
 stats: $(OUTPUT_NAME).hex
-	$(SIZE) $(BUILD_DIR)/$(OUTPUT_NAME).hex
+	$(SIZE) $(SIZE_FLAGS) $(BUILD_DIR)/$(OUTPUT_NAME).hex
 
 clean:
 	$(REMOVE) $(OBJECTS)
