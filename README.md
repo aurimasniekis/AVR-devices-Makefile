@@ -43,8 +43,8 @@ Bootloader Options (e.g. for arduino optiboot programmer=avrisp port=/dev/tty.us
 Installing for AVR-Project in CrossPack-AVR toolchain
 ------------------------------------------------------
 
-Open /usr/local/CrossPack-AVR-20100115/etc/templates/
-Rename TemplateProject to TemplateProject.old
-Clone this branch here and rename AVR-devices-Makefile to TemplateProject
-Now avr-project name will create this AVR project including this makefile
+	$ cd /usr/local/CrossPack-AVR/etc/templates/
+	$ mv TemplateProject TemplateProject.old
+	$ git clone git://github.com/gcds/AVR-devices-Makefile.git
+	$ mv AVR-devices-Makefile  TemplateProject
 	
